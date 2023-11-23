@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "cpy 'images/**/*' dist/images",
-    "start": "rm -rf dist && npx tsc && yarn run prebuild && node dist/index.js"
+    "build": "npx tsc && yarn run prebuild",
+    "start": "rm -rf dist && yarn run build && node dist/index.js"
   },
   "engines": {
     "node": "18"
