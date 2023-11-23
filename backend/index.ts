@@ -4,7 +4,7 @@ import fs from "fs";
 import cors from "cors";
 import { multerUpload, readFilesInDir, readJsonFile } from "./utils/helpers";
 
-const PORT = 3018;
+const PORT = process.env.NODE === "Production" ? 80 : 3018;
 
 const app = express();
 
