@@ -4,6 +4,8 @@ import { css } from "../../styled-system/css";
 import { uploadImg } from "../../service/uploadImg";
 
 const AddImage = () => {
+  const url = process.env.NEXT_PUBLIC_BACKEND_API as string;
+
   const inputRef = useRef<any>(null);
   const [_, setFile] = useState(null);
 
@@ -16,7 +18,7 @@ const AddImage = () => {
     setFile(e.target.files[0]);
     if (e.target.files[0] !== undefined) {
       try {
-        const res = await uploadImg(e.target.files[0]);
+        const res = await uploadImg(url, e.target.files[0]);
         res.status === 201 && window.location.reload();
       } catch (err) {
         console.error(err);

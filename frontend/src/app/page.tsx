@@ -3,7 +3,7 @@ import Images from "@components/components/Images";
 
 export default async function Home() {
   const data = await (
-    await fetch("http://localhost:3018/images", { cache: "no-store" })
+    await fetch(`${process.env.BACKEND_API_URL}/images`, { cache: "no-store" })
   )?.json();
 
   return (
