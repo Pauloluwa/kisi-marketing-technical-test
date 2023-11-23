@@ -49,6 +49,8 @@ app.post("/images", multerUpload.single("image"), (_, res: Response) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Sever listening on port ${PORT}`));
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`Sever listening on port ${PORT}`)
+);
 
 export default app;
