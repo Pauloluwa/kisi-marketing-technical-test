@@ -1,10 +1,10 @@
+import "dotenv/config";
 import express, { Response } from "express";
 import path from "path";
-import fs from "fs";
 import cors from "cors";
 import { multerUpload, readFilesInDir, readJsonFile } from "./utils/helpers";
 
-const PORT = process.env.NODE === "Production" ? 80 : 3018;
+const port = process.env.PORT as unknown as number;
 
 const app = express();
 
@@ -55,8 +55,8 @@ app.post("/images", multerUpload.single("image"), (_, res: Response) => {
   }
 });
 
-app.listen(PORT, "0.0.0.0", () =>
-  console.log(`Sever listening on port ${PORT}`)
+app.listen(port, "0.0.0.0", () =>
+  console.log(`Sever listening on port ${port}`)
 );
 
 export default app;

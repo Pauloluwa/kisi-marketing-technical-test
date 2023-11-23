@@ -12,16 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv/config");
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const helpers_1 = require("./utils/helpers");
-const PORT = 3018;
+const port = process.env.PORT;
+console.log(process.env.NODE_ENV);
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: "*",
 }));
 app.use("/images", express_1.default.static(path_1.default.join(__dirname, "images")));
+app.get("/", (_, res) => {
+    res.status(200).json({
+        message: "Kisi take home api and data management system test",
+    });
+});
 app.get("/images", (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const pathToArticles = path_1.default.join(__dirname, "..", "data", "articles.json");
@@ -50,5 +57,5 @@ app.post("/images", helpers_1.multerUpload.single("image"), (_, res) => {
         console.log(err);
     }
 });
-app.listen(PORT, () => console.log(`Sever listening on port ${PORT}`));
+app.listen(port, "0.0.0.0", () => console.log(`Sever listening on port ${port}`));
 exports.default = app;
