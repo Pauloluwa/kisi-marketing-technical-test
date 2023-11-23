@@ -16,6 +16,12 @@ app.use(
 
 app.use("/images", express.static(path.join(__dirname, "images")));
 
+app.get("/", (_, res: Response) => {
+  res.status(200).json({
+    message: "Kisi take home api and data management system test",
+  });
+});
+
 app.get("/images", async (_, res: Response) => {
   try {
     const pathToArticles = path.join(__dirname, "..", "data", "articles.json");
